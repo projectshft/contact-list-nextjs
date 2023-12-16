@@ -1,7 +1,10 @@
 html,
-body {
+body,
+main {
   width: 100vw;
   display: flex;
-  text-align: center;
+  align-items: center;
   justify-content: center;
+  flex-direction: column;
+  padding: 10px;
 }
