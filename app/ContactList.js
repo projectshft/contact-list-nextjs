@@ -1,8 +1,12 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
+import UserContext from './contexts/UserContext';
+import { useContext } from 'react';
 
-const ContactList = ({ contacts }) => {
+const ContactList = () => {
+  
+  const { contacts } = useContext(UserContext)
 
   return (
     <table className='table table-hover text-center w-75 table-responsive'>
