@@ -50,7 +50,8 @@ const EditPage = () => {
 
   return (
     <div className='w-100 d-flex flex-column align-items-center justify-content-center'>
-    <h1>Edit Contact</h1>
+    <h1>Edit Contact </h1>
+    <br /><h2>{contact.name}</h2>
     <div className='w-50'>
       <form 
         className='d-flex flex-column align-items-center justify-content-center p-3 shadow' 

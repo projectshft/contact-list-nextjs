@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useContext } from 'react';
 import UserContext from './contexts/UserContext';
 import { useRouter } from 'next/navigation';
+import ImageWithDefault from './ImageWithDefault';
 
 const ContactListItem = (props) => {
 
@@ -49,9 +50,11 @@ const ContactListItem = (props) => {
           className='position-relative rounded-circle overflow-hidden' 
           style={{width: 50 + 'px', height: 50 + 'px'}}
         >
-          <Image 
+          <ImageWithDefault 
           alt='profile-pic' 
-          src={props.contact.image_url} 
+          src={props.contact.image_url}
+          defaultSrc = "https://live.staticflickr.com/65535/53404496350_408dd51038_b.jpg"
+          contact={props.contact.name}
           fill
           sizes='(width: 100%)'
           />
