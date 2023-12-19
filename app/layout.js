@@ -4,10 +4,12 @@ import './globals.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import UserContext from './contexts/UserContext';
 import contactsAPI from './contactsAPI.json';
+import ContactListItem from './ContactListItem';
 
 const inter = Inter({ subsets: ['latin'] })
 
 const checkForContacts = () => {
+  if(typeof window !== 'undefined') {
   const storedContacts = JSON.parse(localStorage.getItem('contacts'));
    console.log(storedContacts)
   if (!storedContacts) {
@@ -15,7 +17,7 @@ const checkForContacts = () => {
   } else {
     return storedContacts;
   }
-};
+}};
 
 const userContextValue = {
   contacts: checkForContacts(),
@@ -30,6 +32,12 @@ const userContextValue = {
   delete: function(id) {
     let newContacts = this.contacts.filter((obj) => obj.id !== id)
     this.contacts = newContacts
+    localStorage.setItem('contacts', JSON.stringify(this.contacts))
+  },
+  edit: function(prevContact, editedContact) {
+    let i = this.contacts.indexOf(prevContact)
+    this.contacts.splice(i, 1, editedContact)
+    localStorage.setItem('contacts', JSON.stringify(this.contacts))
   }
 };
 
