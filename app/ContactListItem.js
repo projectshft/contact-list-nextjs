@@ -12,6 +12,7 @@ const ContactListItem = (props) => {
   const router = useRouter();
 
   const handleRowClick = (id, e) => {
+    console.log(e)
     // Check if the click originated from a button
     if (e && e.target && !e.target.matches('button')) {
       // Prevent navigation if the click did not originate from a button
@@ -22,7 +23,7 @@ const ContactListItem = (props) => {
   const handleContactClick = (id, action) => {
     if (action === 'edit') {
       // Add your edit logic here
-      router.push(`/contacts/edit/${id}`);
+      router.push(`/contacts/${id}/edit`);
       
     } else if (action === 'delete') {
       if(confirm(`Are you sure you want to delete this contact?`)) {
@@ -40,7 +41,7 @@ const ContactListItem = (props) => {
       id={props.contact.id} 
       className='align-middle' 
       style={{height: 80 + 'px'}} 
-      onClick={() => handleRowClick(props.contact.id)
+      onClick={(e) => handleRowClick(props.contact.id, e)
     }>
       <td 
         className='justify-content-center align-items-center d-flex' 
@@ -51,7 +52,6 @@ const ContactListItem = (props) => {
           style={{width: 50 + 'px', height: 50 + 'px'}}
         >
           <ImageWithDefault 
-          alt='profile-pic' 
           src={props.contact.image_url}
           defaultSrc = "https://live.staticflickr.com/65535/53404496350_408dd51038_b.jpg"
           contact={props.contact.name}
@@ -60,7 +60,8 @@ const ContactListItem = (props) => {
           />
         </div>
       </td>
-      <td>{props.contact.name}</td>
+      <td>{props.contact.name}
+</td>
       <td>{props.contact.email}</td>
       <td>{props.contact.phone_number}</td>
       <td>

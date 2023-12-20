@@ -12,6 +12,7 @@ const ImageWithDefault = (props) => {
   return (
     <Image 
       {...rest}
+      alt='profile-pic'
       src={imgSrc}
       onError={() => {
         insertDefault()

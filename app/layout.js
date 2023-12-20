@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import UserContext from './contexts/UserContext';
 import contactsAPI from './contactsAPI.json';
 import ContactListItem from './ContactListItem';
+import { SessionProvider } from 'next-auth/react';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,7 +45,7 @@ const userContextValue = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}><UserContext.Provider value={userContextValue}>{children}</UserContext.Provider></body>
+      <body className={inter.className}><SessionProvider><UserContext.Provider value={userContextValue}>{children}</UserContext.Provider></SessionProvider></body>
     </html>
   )
 }

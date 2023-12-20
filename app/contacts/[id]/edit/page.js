@@ -27,6 +27,11 @@ const EditPage = () => {
   }
 
   const handlePicChange = (e) => {
+    if (!e.target.value.startsWith("https://")) {
+      // If not, set the value to "https://" and move the cursor to the end
+      e.target.value = "https://" + e.target.value.slice(8);
+      e.target.setSelectionRange(8, 8);
+    } 
     setPic(e.target.value);
   }
 
@@ -40,7 +45,7 @@ const EditPage = () => {
     {
       "id": contact.id,
       "name": name,
-      "image_url": pic ? pic : "https://live.staticflickr.com/65535/53404496350_408dd51038_b.jpg",
+      "image_url": pic && pic !== "https://" ? pic : "https://live.staticflickr.com/65535/53404496350_408dd51038_b.jpg",
       "email": email,
       "phone_number": phone
     }
@@ -62,7 +67,7 @@ const EditPage = () => {
         <label className='mt-3' htmlFor='new-email'>Email</label>
         <input className='form-control' type='email' id='new-email' placeholder='Enter email' name='email' defaultValue={email} onChange={handleEmailChange}></input>
         <label className='mt-3' htmlFor='new-profile-pic'>Profile Pic</label>
-        <input className='form-control' type='text' id='new-profile-pic' placeholder='Enter URL to Image' name='pic' defaultValue={pic} onChange={handlePicChange}></input>
+        <input className='form-control' type='text' id='new-profile-pic' placeholder='Enter URL to Image' name='pic' defaultValue={pic ? pic : 'https://'} onChange={handlePicChange}></input>
         <label className='mt-3' htmlFor='new-phone-number'>Phone Number</label>
         <input className='form-control' type='name' id='new-phone-number' placeholder='Enter phone number' name='phone' defaultValue={phone} onChange={handlePhoneChange}></input>
         <button className='btn btn-primary mt-3' type='submit'>SAVE</button>
