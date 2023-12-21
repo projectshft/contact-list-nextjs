@@ -1,39 +1,38 @@
 'use client';
-import React, { useState } from 'react'
-import styles from './page.module.css';
+import React, { useState } from 'react';
 import UserContext from '@/app/contexts/UserContext';
 import { useContext } from 'react';
 import { useRouter } from 'next/navigation';
 
 const AddNew = () => {
 
-  const context = useContext(UserContext)
-  const router = useRouter()
+  const context = useContext(UserContext);
+  const router = useRouter();
 
-  const generateID = () => Math.round(Math.random() * 100000000)
+  const generateID = () => Math.round(Math.random() * 100000000);
 
-  const [pic, setPic] = useState('https://')
+  const [pic, setPic] = useState('https://');
 
   const handlePicChange = (e) => {
     if (!e.target.value.startsWith("https://")) {
       // If not, set the value to "https://" and move the cursor to the end
       e.target.value = "https://" + e.target.value.slice(8);
       e.target.setSelectionRange(8, 8);
-    } 
+    };
     setPic(e.target.value);
-  }
+  };
 
   const addContact = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     context.add({
       "id": generateID(),
       "name": e.target.name.value,
       "image_url": pic && pic !== 'https://' ? pic : "https://live.staticflickr.com/65535/53404496350_408dd51038_b.jpg",
       "email": e.target.email.value,
       "phone_number": e.target.phone.value
-    })
-    router.push('/contacts')   
-  }
+    });
+    router.push('/contacts');   
+  };
 
   return (
     <div className='w-100 d-flex flex-column align-items-center justify-content-center'>
@@ -56,6 +55,6 @@ const AddNew = () => {
         </div>
     </div>
   )
-}
+};
 
 export default AddNew;

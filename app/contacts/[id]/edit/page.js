@@ -2,8 +2,7 @@
 import { useParams } from 'next/navigation';
 import UserContext from '@/app/contexts/UserContext';
 import { useContext, useState } from 'react';
-import React from 'react'
-import { RouterContext } from 'next/dist/shared/lib/router-context.shared-runtime';
+import React from 'react';
 import { useRouter } from 'next/navigation';
 
 const EditPage = () => {
@@ -12,7 +11,7 @@ const EditPage = () => {
   const context = useContext(UserContext);
   const router = useRouter();
 
-  const contact = context.contacts.find(obj => obj.id == id)
+  const contact = context.contacts.find(obj => obj.id == id);
   const [name, setName] = useState(contact.name);
   const [email, setEmail] = useState(contact.email);
   const [pic, setPic] = useState(contact.image_url === "https://live.staticflickr.com/65535/53404496350_408dd51038_b.jpg" ? '' : contact.image_url);
@@ -20,27 +19,26 @@ const EditPage = () => {
 
   const handleNameChange = (e) => {
     setName(e.target.value);
-  }
+  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-  }
+  };
 
   const handlePicChange = (e) => {
     if (!e.target.value.startsWith("https://")) {
-      // If not, set the value to "https://" and move the cursor to the end
       e.target.value = "https://" + e.target.value.slice(8);
       e.target.setSelectionRange(8, 8);
-    } 
+    } ;
     setPic(e.target.value);
-  }
+  };
 
   const handlePhoneChange = (e) => {
     setPhone(e.target.value);
-  }
+  };
 
   const handleEditSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     let newContact = 
     {
       "id": contact.id,
@@ -48,9 +46,9 @@ const EditPage = () => {
       "image_url": pic && pic !== "https://" ? pic : "https://live.staticflickr.com/65535/53404496350_408dd51038_b.jpg",
       "email": email,
       "phone_number": phone
-    }
-    context.edit(contact, newContact)
-    router.push('/contacts')
+    };
+    context.edit(contact, newContact);
+    router.push('/contacts');
   }
 
   return (
@@ -75,6 +73,6 @@ const EditPage = () => {
       </div>
   </div>
   )
-}
+};
 
 export default EditPage;

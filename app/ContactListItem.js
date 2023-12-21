@@ -1,6 +1,5 @@
 'use client';
 import React from 'react'
-import Image from 'next/image';
 import { useContext } from 'react';
 import UserContext from './contexts/UserContext';
 import { useRouter } from 'next/navigation';
@@ -17,14 +16,12 @@ const ContactListItem = (props) => {
     if (e && e.target && !e.target.matches('button')) {
       // Prevent navigation if the click did not originate from a button
       router.push(`/contacts/${id}`);
-    }
+    };
   };
 
   const handleContactClick = (id, action) => {
     if (action === 'edit') {
-      // Add your edit logic here
       router.push(`/contacts/${id}/edit`);
-      
     } else if (action === 'delete') {
       if(confirm(`Are you sure you want to delete this contact?`)) {
       context.delete(id);
@@ -32,12 +29,12 @@ const ContactListItem = (props) => {
       }
     } else {
       router.push(`/contacts/${id}`);
-    }
+    };
   };
 
   return (
     <tr 
-      key={props.contact.id} 
+      key={props.contact.id}
       id={props.contact.id} 
       className='align-middle' 
       style={{height: 80 + 'px'}} 
@@ -82,6 +79,6 @@ const ContactListItem = (props) => {
       </td>
     </tr>
   )
-}
+};
 
-export default ContactListItem
+export default ContactListItem;
