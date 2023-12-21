@@ -51,11 +51,16 @@ const EditPage = () => {
     router.push('/contacts');
   }
 
+  const handleBackClick = () => {
+    router.push('/contacts')
+  }
+
   return (
     <div className='w-100 d-flex flex-column align-items-center justify-content-center'>
     <h1>Edit Contact </h1>
     <br /><h2>{contact.name}</h2>
     <div className='w-50'>
+      <button className='btn btn-primary' style={{width:50 + 'px'}} onClick={() => handleBackClick()}>&lt;--</button>
       <form 
         className='d-flex flex-column align-items-center justify-content-center p-3 shadow' 
         onSubmit={(e) => handleEditSubmit(e)}

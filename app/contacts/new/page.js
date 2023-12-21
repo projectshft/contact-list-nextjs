@@ -34,10 +34,15 @@ const AddNew = () => {
     router.push('/contacts');   
   };
 
+  const handleBackClick = () => {
+    router.push('/contacts')
+  }
+
   return (
     <div className='w-100 d-flex flex-column align-items-center justify-content-center'>
       <h1>Add New Contact</h1>
-      <div className='w-50'>
+      <div className='w-50 d-flex flex-column'>
+        <button className='btn btn-primary' style={{width:50 + 'px'}} onClick={() => handleBackClick()}>&lt;--</button>
         <form 
           className='d-flex flex-column align-items-center justify-content-center p-3 shadow' 
           onSubmit={(e) => addContact(e)}
