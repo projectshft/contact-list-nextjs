@@ -12,7 +12,6 @@ const SignInButton = () => {
 
   if(session && session.user) {
     context.setLoggedIn(true)
-    console.log(session)
     return (
       <div style={{position: "absolute", top: 30+'px', right: 50+'px'}}>
         <p>Signed in as {session.user.name}</p>

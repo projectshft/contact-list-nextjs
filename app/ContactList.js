@@ -10,7 +10,6 @@ const ContactList = () => {
   const [table, setTable] = useState([]);
 
   useEffect(() => {
-    console.log(context)
     setTable(context.contacts.map((contact) => {
       return <ContactListItem 
         contact={contact}
@@ -21,7 +20,7 @@ const ContactList = () => {
   }, [context]);
 
   const handleSearchInput = (e) => {
-    
+
     let filteredContacts = context.contacts.filter((contact) => {
       let lowerContact = contact.name.toLowerCase()
       return lowerContact.includes(e.target.value)

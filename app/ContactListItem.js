@@ -11,7 +11,6 @@ const ContactListItem = (props) => {
   const router = useRouter();
 
   const handleRowClick = (id, e) => {
-    console.log(e)
     // Check if the click originated from a button
     if (e && e.target && !e.target.matches('button')) {
       // Prevent navigation if the click did not originate from a button
@@ -25,7 +24,13 @@ const ContactListItem = (props) => {
     } else if (action === 'delete') {
       if(confirm(`Are you sure you want to delete this contact?`)) {
       context.delete(id);
-      props.setTable(context.tableContacts)
+      props.setTable(context.contacts.map((contact) => {
+        return <ContactListItem 
+          contact={contact}
+          key={contact.id}
+          setTable={props.setTable}
+        />
+    }))
       }
     } else {
       router.push(`/contacts/${id}`);
