@@ -1,0 +1,18 @@
+{
+  "contacts": [
+    {
+      "id": 185940284,
+      "name": "Adam Cruz",
+      "image_url": "https://live.staticflickr.com/65535/53404496350_408dd51038_b.jpg",
+      "email": "adam@cruz.com",
+      "phone_number": "8636602906"
+    },
+    {
+      "id": 185940282,
+      "name": "Tina Cruz",
+      "image_url": "https://live.staticflickr.com/65535/53404496350_408dd51038_b.jpg",
+      "email": "tina@cruz.com",
+      "phone_number": "8636602906"
+    }
+  ]
+}
