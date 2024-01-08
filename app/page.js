@@ -1,95 +1,79 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+import { useState } from 'react';
+import { ContactAPI } from './ContactAPI';
+import Link from 'next/link';
 
-export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+// exports a function that shows all Contacts stored in API
+export default function Contacts() {
+	const [allContacts, _] = useState(ContactAPI.all());
+	
+	return (
+		<main>
+			<div className='row'>
+				<div style={{textAlign: 'center'}}>
+					<h1 style={{paddingBottom: 20, paddingTop: 10}} >All Contacts</h1>
+					<Link href={`/contacts/new`}>
+            <button type='button' className='btn btn-dark'>Add Contact</button>
+						</Link>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+						<br />
+						<br />
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+					<div style={{textAlign: 'center'}} className=''>
+								{allContacts.map((c) => (
+									
+						<div key={c.name} style={{paddingBottom: 20, backgroundColor: 'whitesmoke', paddingTop: 20}}>	
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+						<table class="table table-dark">
+  						<thead>
+    						<tr>
+									<th scope="col">Profile Picture</th>
+									<th scope="col">Name</th>
+									<th scope="col">Email</th>
+									<th scope="col">Phone Number</th>
+								</tr>
+							</thead>
+						</table>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+            </div>
+						))}
+        	</div>
+					</div>
+			</div>
+		</main>
+	);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* 
+						<p className='col-md-3' style={{display: 'inline-block'}}><strong>Profile Pic</strong></p>
+						<p className='col-md-3' style={{display: 'inline-block'}}><strong>Name</strong></p>
+						<p className='col-md-3' style={{display: 'inline-block'}}><strong>Email</strong></p>
+						<p className='col-md-3' style={{display: 'inline-block'}}><strong>Phone Number</strong></p>
+						
+
+						<div style={{textAlign: 'center'}} className=''>
+								{allContacts.map((c) => (
+									
+						<div key={c.name} style={{paddingBottom: 20, backgroundColor: 'whitesmoke', paddingTop: 20}}>	
+							<img className='col-md-3' style={{display: 'inline-block', width: 120, height: 'auto', borderRadius: '50%'}} src={c.imageUrl}></img>
+							<p className='col-md-3' style={{display: 'inline-block', paddingLeft: 200}}><Link href={`/contacts/${c.id}`}>{c.name} </Link></p>
+							<p className='col-md-3' style={{display: 'inline-block', paddingLeft: 180}}>{c.email}</p>
+							<p className='col-md-3' style={{display: 'inline-block', paddingLeft: 200}}>{c.number}</p>
+
+            </div>
+						))}
+        	</div> */}
