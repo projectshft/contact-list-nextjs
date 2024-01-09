@@ -1,4 +1,4 @@
-export const contactAPI = {
+export const contactsAPI = {
   contacts: [
     {
       id: 70219577,
@@ -33,4 +33,16 @@ export const contactAPI = {
       phone_number: "18888888888",
     },
   ],
+  getAll: function () {
+    return this.contacts;
+  },
+  addContact: function ({ id, name, email, imageUrl, phoneNumber }) {
+    this.contacts.push({
+      id,
+      name,
+      email,
+      imageUrl,
+      phoneNumber,
+    });
+  },
 };
