@@ -37,6 +37,7 @@ export const contactsAPI = {
     return this.contacts;
   },
   addContact: function ({ id, name, email, image_url, phone_number }) {
+
     this.contacts.push({
       id,
       name,
