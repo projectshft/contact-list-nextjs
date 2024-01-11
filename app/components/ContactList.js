@@ -1,11 +1,14 @@
+// components/ContactList.js
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
+import contactsData from '../data/contacts.json';
 
-const ContactList = ({ contacts }) => {
+const ContactList = () => {
+  const { contacts } = contactsData;
+
   return (
     <div>
-      <h2>Contacts List</h2>
+      <h1>Contact List</h1>
       <ul>
         {contacts.map((contact) => (
           <li key={contact.id}>
@@ -15,16 +18,11 @@ const ContactList = ({ contacts }) => {
           </li>
         ))}
       </ul>
-      <Link href={`/contacts/${contacts.id}`}>
-  <a title={`View details for ${contacts.name}`}>{contact.name}</a>
+      <Link href="/contacts/new">
         <a>Add Contact</a>
       </Link>
     </div>
   );
-};
-
-ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
 };
 
 export default ContactList;

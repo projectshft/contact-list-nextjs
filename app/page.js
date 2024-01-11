@@ -1,39 +1,22 @@
-import React, { useState } from "react";
-import ContactList from "./components/ContactList";
-import ContactForm from "../components/ContactForm";
-import { contacts } from "../data";
+// pages/contacts/index.js
+import React from 'react';
+import ContactList from '../../components/ContactList';
 
-const generateId = () => Math.round(Math.random() * 100000000);
+const ContactsPage = () => {
+  // Fetch contacts data or use a state management library
+  const contacts = [
+    // Sample contacts data
+    {
+      id: 1,
+      name: 'John Doe',
+      image_url: 'https://example.com/john-doe.jpg',
+      email: 'john@example.com',
+      phone_number: '1234567890',
+    },
+    // Add more contacts as needed
+  ];
 
-const IndexPage = () => {
-  const [currentView, setCurrentView] = useState("list");
-  const [selectedContact, setSelectedContact] = useState(null);
-
-  const handleAddContact = (newContact) => {
-    newContact.id = generateId();
-    contacts.push(newContact);
-    setCurrentView("list");
-  };
-
-  const handleViewContact = (id) => {
-    const contact = contacts.find((c) => c.id === id);
-    setSelectedContact(contact);
-    setCurrentView("view");
-  };
-
-  const handleBack = () => {
-    setCurrentView("list");
-    setSelectedContact(null);
-  };
-
-  return (
-    <div>
-      {currentView === "list" && (
-        <ContactList contacts={contacts} onViewContact={handleViewContact} />
-      )}
-      {currentView === "form" && <ContactForm onSubmit={handleAddContact} />}
-    </div>
-  );
+  return <ContactList contacts={contacts} />;
 };
 
-export default IndexPage;
+export default ContactsPage;
