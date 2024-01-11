@@ -1,6 +1,6 @@
 // pages/contacts/index.js
 import React from 'react';
-import ContactList from '../../components/ContactList';
+import ContactList from './components/ContactList';
 
 const ContactsPage = () => {
   // Fetch contacts data or use a state management library

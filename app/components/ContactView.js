@@ -1,6 +1,7 @@
 // components/ContactView.js
 import React from 'react';
 import Link from 'next/link';
+import PropTypes from 'prop-types'; // Fix: Import PropTypes correctly
 
 const ContactView = ({ contactId }) => {
   // Fetch the contact details based on the contactId
@@ -25,6 +26,10 @@ const ContactView = ({ contactId }) => {
       </Link>
     </div>
   );
+};
+
+ContactView.propTypes = {
+  contactId: PropTypes.string.isRequired, // Adjust the type accordingly
 };
 
 export default ContactView;
