@@ -1,8 +1,8 @@
 "use client";
 import { contactsAPI } from "@/app/data/contactsAPI";
 import { useState } from "react";
-import { useRouter } from "next/router";
-import Link from "next";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { generateId } from "../../utils/utils";
 
 export default function AddContactForm() {
@@ -10,20 +10,27 @@ export default function AddContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [image_url, setImageUrl] = useState("");
-  const [phone_number, setphoneNumber] = useState(0);
+  const [phone_number, setPhoneNumber] = useState(0);
+  const router = useRouter();
+
   // function to add states to object and push to api (handled in contactApi )
   // on change set state for form items
   const handleClick = () => {
     const id = generateId();
     contactsAPI.addContact({ id, name, email, image_url, phone_number });
-    console.log(contactsAPI.getAll());
+
+    router.push("/contacts");
   };
 
   return (
-    <section className="container mt-4">
+    <section className="container w-50 mt-4">
+      <h1 className="text-center">Add New Contact</h1>
+      <Link href="/" className="btn btn-secondary mb-2">
+        Back
+      </Link>
+
       <form className="contact-form text-center">
         <div className="form-group">
-          <h1>Add New Contact</h1>
           <div className="mb-3">
             <label className="form-label fw-bold">Name</label>
             <input
@@ -57,7 +64,7 @@ export default function AddContactForm() {
               type="number"
               className="form-control"
               placeholder="Enter Phone Number"
-              onChange={(e) => setphoneNumber(e.target.value)}
+              onChange={(e) => setPhoneNumber(parseInt(e.target.value, 10))}
             />
           </div>
         </div>
