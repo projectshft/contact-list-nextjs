@@ -22,6 +22,8 @@ export default function AddContactForm() {
     email.trim();
     image_url.trim();
 
+    const allContacts = contactsAPI.getAll();
+
     if (!name || !email || !image_url || !phone_number) {
       setErrors("please make sure all fields are not empty");
       return false;
@@ -33,8 +35,13 @@ export default function AddContactForm() {
         "please enter a 10 digit number with no special characters ex: 1234567890"
       );
       return false;
+      // checked all contacts to see if a contact existed in the contactsAPI if it does exist will return false and set the error state
+    } else if (allContacts.some((contact) => contact.name === name)) {
+      setErrors(`${name} is already in your contacts`);
+      return false;
+    } else {
+      return true;
     }
-    return true;
   };
 
   const handleClick = () => {
@@ -46,11 +53,10 @@ export default function AddContactForm() {
       setEmail("");
       setImageUrl("");
       setPhoneNumber("");
+      router.push("/contacts");
     }
 
     console.log(contactsAPI.getAll());
-
-    // router.push("/contacts");
   };
 
   return (
