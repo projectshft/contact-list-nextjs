@@ -36,6 +36,10 @@ export const contactsAPI = {
   getAll: function () {
     return this.contacts;
   },
+  getById: function (id) {
+    const isContact = (c) => c.id === id;
+    return this.contacts.find(isContact);
+  },
   addContact: function ({ id, name, email, image_url, phone_number }) {
     this.contacts.push({
       id,
