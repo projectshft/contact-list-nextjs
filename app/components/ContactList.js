@@ -7,7 +7,7 @@ import React from "react";
 export const ContactList = ({ contacts }) => {
   console.log(contacts);
   return (
-    <table className="table table-secondary table-hover text-center">
+    <table className="table table-secondary table-hover text-center mt-3">
       <thead>
         <tr>
           <th scope="col">Profile Pic</th>

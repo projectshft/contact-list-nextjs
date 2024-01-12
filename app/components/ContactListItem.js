@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import PropTypes from 'prop-types';
+
 //receive props declare propTypes
 export default function ContactListItem({ singleContact }) {
   // console.log(singleContact);
@@ -10,7 +12,7 @@ export default function ContactListItem({ singleContact }) {
   
   <tr>
   <td>
-    <img style={{ width: "65px" }} className="rounded-circle" src={image_url} alt="" />
+    <img style={{ width: "65px" }} className="rounded-circle" src={image_url} alt={`image of ${name}`} />
   </td>
   <td>
     <Link  className="text-info text-decoration-underline" href="/">{name}</Link>
@@ -25,6 +27,16 @@ export default function ContactListItem({ singleContact }) {
 </tr>
       
   )
+}
+
+ContactListItem.propTypes = {
+  singleContact: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    image_url: PropTypes.string,
+    email: PropTypes.string,
+    phone_number: PropTypes.number
+  })
 }
 
 
