@@ -93,6 +93,15 @@ a {
   text-decoration: none;
 }
 
+td {
+  vertical-align: middle;
+}
+
+.search-bar {
+  height: 40px
+}
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

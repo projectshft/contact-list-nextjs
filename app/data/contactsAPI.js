@@ -4,7 +4,7 @@ export const contactsAPI = {
       id: 70219577,
       name: "Albert Einstein",
       image_url:
-        "https://en.wikipedia.org/wiki/Albert_Einstein#/media/File:Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/3/3e/Einstein_1921_by_F_Schmutzer_-_restoration.jpg",
       email: "aeinstein@example.com",
       phone_number: "15555555555",
     },
@@ -12,7 +12,7 @@ export const contactsAPI = {
       id: 90210325,
       name: "Isaac Newton",
       image_url:
-        "https://en.wikipedia.org/wiki/Isaac_Newton#/media/File:Portrait_of_Sir_Isaac_Newton,_1689_(brightened).jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/f/f7/Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg",
       email: "inewton@example.com",
       phone_number: "16666666666",
     },
@@ -28,7 +28,7 @@ export const contactsAPI = {
       id: 60890123,
       name: "Nikola Tesla",
       image_url:
-        "https://en.wikipedia.org/wiki/Nikola_Tesla#/media/File:N.Tesla.JPG",
+        "https://upload.wikimedia.org/wikipedia/commons/d/d4/N.Tesla.JPG",
       email: "ntesla@example.com",
       phone_number: "18888888888",
     },
@@ -37,7 +37,6 @@ export const contactsAPI = {
     return this.contacts;
   },
   addContact: function ({ id, name, email, image_url, phone_number }) {
-
     this.contacts.push({
       id,
       name,

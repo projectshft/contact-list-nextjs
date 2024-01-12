@@ -61,7 +61,7 @@ export default function AddContactForm() {
 
   return (
     <section className="container w-50 mt-4">
-      <h1 className="text-center">Add New Contact</h1>
+      <h1 className="display-3 text-center">Add New Contact</h1>
       <Link href="/" className="btn btn-secondary mb-2">
         Back
       </Link>

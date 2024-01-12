@@ -1,7 +1,7 @@
 export default function ContactSearchBar() {
   return (
     <div>
-      <input type="text" placeholder="Search By Name" />
+      <input className="form-control mt-2 mb-2 text-center search-bar" type="text" placeholder="Search By Name" />
     </div>
   );
 }
