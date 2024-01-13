@@ -49,4 +49,9 @@ export const contactsAPI = {
       phone_number,
     });
   },
+  deleteContact: function (id) {
+    const contactToDelete = (c) => c.id === id;
+    const contactIndex = this.contacts.findIndex(contactToDelete);
+    return this.contacts.splice(contactIndex, 1);
+  },
 };

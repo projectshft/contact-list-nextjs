@@ -4,10 +4,7 @@
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-
 }
-
-
 
 * {
   box-sizing: border-box;
@@ -34,9 +31,12 @@ td {
 }
 
 .search-bar {
-  height: 50px
+  height: 50px;
 }
 
+.contact-image {
+  width: 400px;
+}
 
 @media (prefers-color-scheme: dark) {
   html {
