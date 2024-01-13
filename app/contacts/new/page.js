@@ -43,11 +43,11 @@ export default function AddContactForm() {
       return true;
     }
   };
-
+  // handleClick checks the form fields and runs them through a function to ensure our data is in the correct format if it is valid the function will return true and call the ContactsAPI's addContact method which will add the contact to our mock database.  fields are then reset to empty and a use is rerouted to "/contacts"
   const handleClick = () => {
-    const id = generateId();
     if (validateContact(name, email, image_url, phone_number)) {
       setErrors(null);
+      const id = generateId();
       contactsAPI.addContact({ id, name, email, image_url, phone_number });
       setName("");
       setEmail("");
