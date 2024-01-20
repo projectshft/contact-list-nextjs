@@ -1,28 +1,26 @@
-// components/ContactList.js
 import React from 'react';
-import Link from 'next/link';
-import contactsData from '../data/contacts.json';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const ContactList = () => {
-  const { contacts } = contactsData;
-
+const ContactList = ({ contacts }) => {
+  console.log({ contacts });
   return (
     <div>
-      <h1>Contact List</h1>
+      <h1>Contacts List</h1>
       <ul>
         {contacts.map((contact) => (
           <li key={contact.id}>
-            <Link href={`/contacts/${contact.id}`}>
-              <a>{contact.name}</a>
-            </Link>
+            <Link to={`/contacts/${contact.id}`}>{contact.name}</Link>
           </li>
         ))}
       </ul>
-      <Link href="/contacts/new">
-        <a>Add Contact</a>
-      </Link>
+      <Link to="/contacts/new">Add Contact</Link>
     </div>
   );
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
 };
 
 export default ContactList;

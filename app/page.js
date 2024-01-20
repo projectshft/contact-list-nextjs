@@ -1,22 +1,13 @@
-// pages/contacts/index.js
+'use client';
+
 import React from 'react';
-import ContactList from './components/ContactList';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Home } from './pages/Home';
 
-const ContactsPage = () => {
-  // Fetch contacts data or use a state management library
-  const contacts = [
-    // Sample contacts data
-    {
-      id: 1,
-      name: 'John Doe',
-      image_url: 'https://example.com/john-doe.jpg',
-      email: 'john@example.com',
-      phone_number: '1234567890',
-    },
-    // Add more contacts as needed
-  ];
+const App = () => (
+  <Router>
+    <Home />
+  </Router>
+);
 
-  return <ContactList contacts={contacts} />;
-};
-
-export default ContactsPage;
+export default App;

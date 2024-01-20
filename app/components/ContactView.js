@@ -1,35 +1,28 @@
-// components/ContactView.js
 import React from 'react';
-import Link from 'next/link';
-import PropTypes from 'prop-types'; // Fix: Import PropTypes correctly
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const ContactView = ({ contactId }) => {
-  // Fetch the contact details based on the contactId
+const ContactView = ({ match, contacts }) => {
+  const contactId = parseInt(match.params.id, 10);
+  const contact = contacts.find((c) => c.id === contactId);
 
-  const contactDetails = {
-    id: contactId,
-    name: 'Albert Einstein',
-    image_url:
-      'https://en.wikipedia.org/wiki/Albert_Einstein#/media/File:Einstein_1921_by_F_Schmutzer_-_restoration.jpg',
-    email: 'aeinstein@example.com',
-    phone_number: '15555555555',
-  };
+  if (!contact) {
+    return <div>Contact not found</div>;
+  }
 
   return (
     <div>
-      <h1>Contact Details</h1>
-      <p>Name: {contactDetails.name}</p>
-      <p>Email: {contactDetails.email}</p>
-      <p>Phone Number: {contactDetails.phone_number}</p>
-      <Link href="/contacts">
-        <a>Back to Contacts</a>
-      </Link>
+      <h2>{contact.name}</h2>
+      <p>Email: {contact.email}</p>
+      <p>Phone: {contact.phone_number}</p>
+      <Link to="/contacts">Back to Contacts</Link>
     </div>
   );
 };
 
 ContactView.propTypes = {
-  contactId: PropTypes.string.isRequired, // Adjust the type accordingly
+  match: PropTypes.object.isRequired,
+  contacts: PropTypes.array.isRequired,
 };
 
 export default ContactView;
