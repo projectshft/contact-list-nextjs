@@ -1,9 +1,11 @@
+// ContactView.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const ContactView = ({ match, contacts }) => {
-  const contactId = parseInt(match.params.id, 10);
+const ContactView = ({ contacts }) => {
+  const { id } = useParams();
+  const contactId = parseInt(id, 10);
   const contact = contacts.find((c) => c.id === contactId);
 
   if (!contact) {
@@ -21,7 +23,6 @@ const ContactView = ({ match, contacts }) => {
 };
 
 ContactView.propTypes = {
-  match: PropTypes.object.isRequired,
   contacts: PropTypes.array.isRequired,
 };
 
