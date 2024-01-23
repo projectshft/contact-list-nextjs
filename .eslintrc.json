@@ -1,3 +1,6 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["wesbos"],
+  "rules": {
+    "react/prop-types": "warn"
+  }
 }
