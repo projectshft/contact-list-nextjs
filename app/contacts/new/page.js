@@ -12,6 +12,9 @@ export default function AddContact() {
 	const router = useRouter();
 
 	const handleSubmitContactClick = () => {
+	 	const generateId = () => Math.round(Math.random() * 100000000);
+		const id = generateId(); 
+		
 		ContactsAPI.addContact({
 			id,
       name,

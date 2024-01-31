@@ -1,14 +1,18 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
-import { ContactsAPI } from '../../data/contactsAPI';
+import { ContactsAPI } from '@/app/data/contactsAPI';
+import { useParams } from 'react-router-dom';
+import { AddContact } from '/app/contacts/new/page'
 
 export default function Contact() {
 	const { id } = useParams();
-	const contact = ContactsAPI.get(parseInt(id, 10));
+	const contact = ContactsAPI.getID(parseInt(id, 10));
 
 	if (!contact) {
-		return <div>Sorry, we could not find that contact</div>;
+		return <div className='text-center'>
+			<h1>Sorry, we could not find that contact</h1>
+			<Link className='btn btn-secondary' href='/contacts'> Back</Link>
+			</div>;
 	}
 
 	return (
