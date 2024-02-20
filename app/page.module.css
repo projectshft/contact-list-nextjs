@@ -5,6 +5,66 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+  background-color: white;
+  color: black;
+}
+
+.addButton {
+  background-color: rgb(42, 42, 201);
+  margin-left: 50%;
+  transform: translate(-50%);
+  padding: 7px;
+  border-radius: 14px;
+  font-size: 20px;
+  font-family: "Courier New", Courier, monospace;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.addContactBtn {
+  width: 300px;
+  height: 34px;
+  background-color: rgb(42, 42, 201);
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 14px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tableProfilePic {
+  max-width: 50px;
+  max-height: 50px;
+  margin-left: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.input {
+  background-color: rgb(233, 227, 227);
+  width: 300px;
+  height: 30px;
+  font-size: 15px;
+  color: black;
+  margin: 4px;
+  margin-bottom: 20px;
+}
+
+.contactForm {
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.table {
+  margin-top: 25px;
+  width: 750px;
+}
+
+.contactCell {
+  align-items: center;
+  padding-left: 30px;
+  font-size: 20px;
 }
 
 .description {
@@ -97,7 +157,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
