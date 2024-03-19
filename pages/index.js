@@ -52,12 +52,29 @@ const Home = () => {
 
   return (
     <>
-      <Head>
-        {/* Additional head content if needed */}
-      </Head>
-      {/* ... rest of the component */}
+      <Head>{/* Additional head content if needed */}</Head>
+      <main>
+        <div>
+          <div>
+            <div>
+              <h1>All Contacts</h1>
+              <button onClick={handleAddContact}>Add Contact</button>
+              {showContactForm && <ContactForm addContact={addContact} />}
+              <div>
+                <input type='text' id='post-text' placeholder='Search Contacts' />
+              </div>
+            </div>
+            <div>
+              <header>Profile Pic Name Email Phone</header>
+            </div>
+            <div>
+              <ContactsList contacts={contacts} />
+            </div>
+          </div>
+        </div>
+      </main>
     </>
   );
 };
 
-export default Home;
+export default Home; 
