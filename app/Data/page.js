@@ -1,6 +1,13 @@
 'use client';
 import React, { useState } from "react";
 
+interface Contacts = [{
+  name: string;
+  url: string;
+  email: string;
+  phone: string;
+}]
+
 export default function Data() {
 	const [contacts, setContacts] = useState([
     {
