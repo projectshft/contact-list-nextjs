@@ -1,6 +1,10 @@
 import Link from "next/link";
 import "./globals.css";
-import Header from "./Header/page";
+
+interface Metadata = {
+  title: string;
+  description: string;
+}
 
 export const metadata = {
   title: "LinkedX",
