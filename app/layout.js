@@ -1,10 +1,8 @@
 import Link from "next/link";
 import "./globals.css";
-
-interface Metadata = {
-  title: string;
-  description: string;
-}
+import AddContactsButton from "@/components/AddContactsButton";
+import Header from "@/components/Header";
+import Individual from "./contacts/[name]/page";
 
 export const metadata = {
   title: "LinkedX",
@@ -15,13 +13,16 @@ export default function Layout({children}) {
   return (
     <html lang="en">
       <body>
-        <nav className='nav-bar'>
-          <Link className='links' href='/AllContacts'>All Contacts</Link>
-          <Link className='links' href='/SearchContacts'>Search Contacts</Link>
-          <Link className='links' href='/AddContacts'>Add Contacts</Link>
-        </nav>
 
-        {children}        
+        {/* <Header /> */}
+
+        { children }
+
+        <nav className='nav-bar'>
+          <Link className='routes' href='/contacts'>
+            Home/Back
+          </Link>
+        </nav>
 
       </body>
     </html>
