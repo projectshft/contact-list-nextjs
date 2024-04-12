@@ -9,11 +9,23 @@ export const useContacts = () => useContext(ContactsContext);
 export const ContactsProvider = ({ children }) => {
   const [contacts, setContacts] = useState(ContactsData);
 
-  const addContact = (contact) => {
-    setContacts([...contacts, contact]);
+  const addContact = (newContact) => {
+    setContacts([...contacts, newContact]);
   };
 
-  const contextValue = { contacts, addContact }
+  const editContact = (id, name, email, phoneNumber) => {
+    const matchingContact = contacts.find((contact) => contact.id == id);
+    matchingContact.name = name;
+    matchingContact.email = email;
+    matchingContact.phoneNumber = phoneNumber;
+  };
+
+  const removeContact = (filteredContact) => {
+    const filteredContacts = contacts.filter((contact) => contact !== filteredContact);
+    setContacts([...filteredContacts]);
+  };
+
+  const contextValue = { contacts, addContact, editContact, removeContact }
 
   return (
     <ContactsContext.Provider value={contextValue}>

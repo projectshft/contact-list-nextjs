@@ -24,7 +24,7 @@ export default function Contact() {
         <img src={contact.picture} alt='profile picture'></img>
         <h2>Email: {contact.email}</h2>
         <h2>Phone: {contact.phoneNumber}</h2>
-        <Link href='/'>Back</Link>
+        <Link href='/contacts'>Back</Link>
       </div>
     </main>
   )
