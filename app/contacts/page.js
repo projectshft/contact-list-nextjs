@@ -3,19 +3,87 @@ import { useState, useContext } from 'react';;
 import Link from 'next/link';
 import { useContacts } from '../contexts/ContactsContext';
 
-function Search() {
-  const [term, setTerm] = useState('');
+function AllContacts() {
+  const { contacts = [] } = useContacts();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
   
-  const handleChange = (event) => {
-    setTerm(event.target.value);
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value)
+  };
+
+  const handleSearchResult = (event) => {
+    const nameResult = contacts.filter((contact) => 
+      contact.name.toLowerCase() === event.target.value.toLowerCase()
+    );
+      
+    setSearchResult(nameResult);
   }
 
-  console.log(term);
-  
   return (
-    <input value={term} placeholder='Search Contacts' onChange={handleChange}></input>
+    <div>
+      <input 
+        value={searchTerm}
+        placeholder='Search Contacts by Name'
+        onChange={(e) => { handleSearchChange(e); handleSearchResult(e) }}>
+      </input>
+      <ContactsTable contacts={contacts} matchingContact={searchResult}/>
+    </div>
   );
 };
+
+function ContactsTable({ contacts, matchingContact }) {
+
+  if (matchingContact.length > 0) {
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>picture</th>
+            <th>name</th>
+            <th>email</th>
+            <th>phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          {matchingContact.map((contact) => (<ContactRow key={contact.id} contact={contact}/>))}
+        </tbody>
+      </table>
+    );
+  }
+
+  if (contacts.length >= 1) {
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>picture</th>
+            <th>name</th>
+            <th>email</th>
+            <th>phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contacts.map((contact) => (<ContactRow key={contact.id} contact={contact}/>))}
+        </tbody>
+      </table>
+    );
+  }
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>picture</th>
+          <th>name</th>
+          <th>email</th>
+          <th>phone</th>
+        </tr>
+      </thead>
+    </table>
+  );
+
+}
 
 function ContactRow({ key, contact }) {
   
@@ -58,20 +126,7 @@ export default function Home() {
         <Link href={'./contacts/new'}>
           <button>Add Contact</button>
         </Link>
-        <Search/>
-        <table>
-          <thead>
-            <tr>
-              <th>picture</th>
-              <th>name</th>
-              <th>email</th>
-              <th>phone</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.map((contact) => (<ContactRow key={contact.id} contact={contact}/>))}
-          </tbody>
-        </table>
+        <AllContacts/>
       </div>
     </main>
   );
