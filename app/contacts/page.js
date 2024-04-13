@@ -36,13 +36,15 @@ function ContactsTable({ contacts, matchingContact }) {
 
   if (matchingContact.length > 0) {
     return (
-      <table>
+      <table className='table table-striped'>
         <thead>
-          <tr>
-            <th>picture</th>
-            <th>name</th>
-            <th>email</th>
-            <th>phone</th>
+          <tr className='table-dark'>
+            <th scope='col'>picture</th>
+            <th scope='col'>name</th>
+            <th scope='col'>email</th>
+            <th scope='col'>phone</th>
+            <th scope='col'></th>
+            <th scope='col'></th>
           </tr>
         </thead>
         <tbody>
@@ -54,13 +56,15 @@ function ContactsTable({ contacts, matchingContact }) {
 
   if (contacts.length >= 1) {
     return (
-      <table>
+      <table className='table table-striped'>
         <thead>
-          <tr>
-            <th>picture</th>
-            <th>name</th>
-            <th>email</th>
-            <th>phone</th>
+          <tr className='table-dark'>
+            <th scope='col'>picture</th>
+            <th scope='col'>name</th>
+            <th scope='col'>email</th>
+            <th scope='col'>phone</th>
+            <th scope='col'></th>
+            <th scope='col'></th>
           </tr>
         </thead>
         <tbody>
@@ -71,13 +75,15 @@ function ContactsTable({ contacts, matchingContact }) {
   }
 
   return (
-    <table>
+    <table className='table table-striped'>
       <thead>
-        <tr>
-          <th>picture</th>
-          <th>name</th>
-          <th>email</th>
-          <th>phone</th>
+        <tr className='table-dark'>
+          <th scope='col'>picture</th>
+          <th scope='col'>name</th>
+          <th scope='col'>email</th>
+          <th scope='col'>phone</th>
+          <th scope='col'></th>
+          <th scope='col'></th>
         </tr>
       </thead>
     </table>
