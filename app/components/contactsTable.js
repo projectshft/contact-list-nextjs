@@ -1,20 +1,12 @@
 import { ContactRow } from './contactRow';
+import { TableHeading } from './tableHeading';
 
 export function ContactsTable({ contacts, matchingContact }) {
 
   if (matchingContact.length > 0) {
     return (
       <table className='table table-striped'>
-        <thead>
-          <tr className='table-dark'>
-            <th scope='col'>picture</th>
-            <th scope='col'>name</th>
-            <th scope='col'>email</th>
-            <th scope='col'>phone</th>
-            <th scope='col'></th>
-            <th scope='col'></th>
-          </tr>
-        </thead>
+        <TableHeading/>
         <tbody>
           {matchingContact.map((contact) => (<ContactRow key={contact.id} contact={contact}/>))}
         </tbody>
@@ -25,16 +17,7 @@ export function ContactsTable({ contacts, matchingContact }) {
   if (contacts.length >= 1) {
     return (
       <table className='table table-striped'>
-        <thead>
-          <tr className='table-dark'>
-            <th scope='col'>picture</th>
-            <th scope='col'>name</th>
-            <th scope='col'>email</th>
-            <th scope='col'>phone</th>
-            <th scope='col'></th>
-            <th scope='col'></th>
-          </tr>
-        </thead>
+        <TableHeading/>
         <tbody>
           {contacts.map((contact) => (<ContactRow key={contact.id} contact={contact}/>))}
         </tbody>
@@ -43,25 +26,9 @@ export function ContactsTable({ contacts, matchingContact }) {
   }
 
   return (
-    <ContactsTableHeading/>
+    <table className='table table-striped'>
+      <TableHeading/>
+    </table>
   );
 
 }
-
-// Make a ContactsTableHeading
-function ContactsTableHeading () {
-  return (
-    <table className='table'>
-      <thead>
-        <tr className='table-dark'>
-          <th scope='col'>picture</th>
-          <th scope='col'>name</th>
-          <th scope='col'>email</th>
-          <th scope='col'>phone</th>
-          <th scope='col'></th>
-          <th scope='col'></th>
-        </tr>
-      </thead>
-    </table>
-  );
-};

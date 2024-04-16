@@ -17,13 +17,24 @@ export default function Edit() {
   const [phoneNumber, setNumber] = useState(contact.phoneNumber);
 
   const handleSubmitClick = () => {
-    editContact(id, name, email, phoneNumber);
+    editContact(id, picture, name, email, phoneNumber);
     router.push('/contacts');
   }
 
   return (
-    <div>
+    <div className='container'>
+      <h1>Edit Contact</h1>
       <form>
+        <label>Profile Picture</label>
+        <input
+          type='text'
+          className='form-control'
+          value={picture}
+          onChange={(event) => setPicture(event.target.value)}
+          placeholder='Enter picture url'
+        />
+        <br/>
+
         <label>Name</label>
         <input
           type='text'
@@ -40,21 +51,25 @@ export default function Edit() {
           onChange={(event) => setEmail(event.target.value)}
           value={email}
         />
-
         <br/>
 
-        <label>Number</label>
+        <label>Phone Number</label>
         <input
           type='text'
           className='form-control'
           onChange={(event) => setNumber(event.target.value)}
           value={phoneNumber}
         />
+        <br/>
 
-        <button type='button' onClick={handleSubmitClick}>Submit</button>
+        <button 
+          type='button'
+          onClick={handleSubmitClick}
+          className='btn btn-primary btn-sm'
+        >Submit</button>
       </form>
 
-      <Link href={'/contacts'}>Contacts</Link>
+      <Link href={'/contacts'}>Back</Link>
     </div>
   );
 }

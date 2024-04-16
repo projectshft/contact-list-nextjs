@@ -20,12 +20,14 @@ export function AllContacts() {
   }
 
   return (
-    <div>
-      <input 
+    <div className='col-12'>
+      <input
+        className='form-control'
         value={searchTerm}
         placeholder='Search Contacts by Name'
         onChange={(e) => { handleSearchChange(e); handleSearchResult(e) }}>
       </input>
+      <br/>
       <ContactsTable contacts={contacts} matchingContact={searchResult}/>
     </div>
   );

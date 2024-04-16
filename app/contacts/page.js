@@ -1,18 +1,18 @@
 'use client';
-import { useState, useContext } from 'react';
 import Link from 'next/link';
 import { AllContacts } from '../components/allContacts';
 
 export default function Home() {
   return (
-    <main>
-      <div>
+    <main className='container'>
+      <div className='col-12 text-center'>
         <h1>All Contacts</h1>
         <Link href={'./contacts/new'}>
-          <button>Add Contact</button>
+          <button className='btn btn-primary'>Add Contact</button>
         </Link>
-        <AllContacts/>
       </div>
+      <br/>
+        <AllContacts/>
     </main>
   );
 }

@@ -13,8 +13,9 @@ export const ContactsProvider = ({ children }) => {
     setContacts([...contacts, newContact]);
   };
 
-  const editContact = (id, name, email, phoneNumber) => {
+  const editContact = (id, picture, name, email, phoneNumber) => {
     const matchingContact = contacts.find((contact) => contact.id == id);
+    matchingContact.picture = picture;
     matchingContact.name = name;
     matchingContact.email = email;
     matchingContact.phoneNumber = phoneNumber;
