@@ -1,8 +1,15 @@
 import { ContactRow } from './contactRow';
 import { TableHeading } from './tableHeading';
+import { Contact } from '../contexts/ContactsContext';
 
-export function ContactsTable({ contacts, matchingContact }) {
+interface ContactsTableProps {
+  contacts: Contact[];
+  matchingContact: Contact[];
+}
 
+export function ContactsTable({ contacts, matchingContact }: ContactsTableProps) {
+
+  // Renders each contact object as a row if a value exists in the matchingContact array, 
   if (matchingContact.length > 0) {
     return (
       <table className='table table-striped'>

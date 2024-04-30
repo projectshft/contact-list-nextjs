@@ -6,8 +6,8 @@ import { useContacts } from '../../contexts/ContactsContext';
 
 export default function Contact() {
   const { id } = useParams();
-  const { contacts = [] } = useContacts();
-  const contact = contacts.find((contact) => contact.id == id);
+  const { getContact } = useContacts();
+  const contact = getContact(id);
 
   if (!contact) {
     return (
@@ -23,12 +23,11 @@ export default function Contact() {
             {contact.name}
           </h1>
           <Image
-          src={contact.picture}
+          src={contact.picture ? contact.picture : '/default-profile-picture.jpg'}
           alt='profile picture'
           width={100}
           height={100}
           />
-          {/* <img src={contact.picture} alt='profile picture'></img> */}
           <h2>Email: {contact.email}</h2>
           <h2>Phone: {contact.phoneNumber}</h2>
           <Link href='/contacts'>Back</Link>

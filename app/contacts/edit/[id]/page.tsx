@@ -1,23 +1,25 @@
 'use client';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useContacts } from '../../../contexts/ContactsContext';
 
+// A form used to edit an existing Contact object stored in ContactsContext
 export default function Edit() {
   const router = useRouter();
   const { id } = useParams();
-  const { contacts = [] } = useContacts();
-  const { editContact } = useContacts();
-  const contact = contacts.find((contact) => contact.id == id);
+  const { editContact, getContact } = useContacts();
+  const contact = getContact(id);
 
+  // Creates local state for each form field
   const [picture, setPicture] = useState(contact.picture);
   const [name, setName] = useState(contact.name);
   const [email, setEmail] = useState(contact.email);
-  const [phoneNumber, setNumber] = useState(contact.phoneNumber);
+  const [phoneNumber, setPhoneNumber] = useState(contact.phoneNumber);
 
+  // Update context with the new Contact object properties
   const handleSubmitClick = () => {
-    editContact(id, picture, name, email, phoneNumber);
+    editContact({ ...contact, picture, name, email, phoneNumber });
     router.push('/contacts');
   }
 
@@ -57,7 +59,7 @@ export default function Edit() {
         <input
           type='text'
           className='form-control'
-          onChange={(event) => setNumber(event.target.value)}
+          onChange={(event) => setPhoneNumber(event.target.value)}
           value={phoneNumber}
         />
         <br/>

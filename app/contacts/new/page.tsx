@@ -1,16 +1,16 @@
 'use client';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useContacts } from '../../contexts/ContactsContext';
 
 export default function NewContact() {
   const router = useRouter();
-  
-  // Pull initial data from context
+
+  // Pulls contacts data from context
   const { contacts, addContact } = useContacts();
 
-  // Set state
+  // Sets state for each contact form field
   const [picture, setPicture] = useState('/default-profile-picture.jpg');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,7 +24,7 @@ export default function NewContact() {
     };
     let id = randInt();
 
-    // Get an array of all the IDs from current context
+    // Gets an array of all the IDs from current context
     const ids = contacts.map((contact) => contact.id);
 
     // Iterate over the array to see if the new id exists already
@@ -32,6 +32,12 @@ export default function NewContact() {
       id = randInt();
     } 
 
+    // Checks that each field is not empty
+    if (!name || !email || !phoneNumber) {
+      alert("Please fill out all the values.")
+      return;
+    }
+    
     addContact({
       id,
       name,
