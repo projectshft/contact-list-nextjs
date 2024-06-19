@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+'use client';
+import { useRouter } from 'next/navigation';
+
+export default function Home() {
+  const router = useRouter();
+
+  router.push('/contacts');
+
+  return (
+    <div></div>
+=======
 import Image from 'next/image'
 import styles from './page.module.css'
 
@@ -91,5 +103,6 @@ export default function Home() {
         </a>
       </div>
     </main>
+>>>>>>> 2815283ac370c37293570b839a69cdf10b85815c
   )
 }
