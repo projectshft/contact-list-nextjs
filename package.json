@@ -8,13 +8,33 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "eslintConfig": {
+    "extends": [
+      "wesbos"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "endOfLine": "auto",
+          "tabWidth": 4
+        }
+      ]
+    }
+  },
   "dependencies": {
+    "@heroicons/react": "^2.1.5",
+    "eslint-config-wesbos": "^4.3.1",
+    "next": "^14.2.8",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.0.2"
+    "react-dom": "^18"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.20",
     "eslint": "^8",
-    "eslint-config-next": "14.0.2"
+    "eslint-config-next": "14.0.2",
+    "postcss": "^8.4.45",
+    "tailwindcss": "^3.4.10"
   }
 }
