@@ -1,33 +1,22 @@
 "use client";
 import { useContacts, setContacts } from "@/app/contexts/ContactsContext";
-import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const ContactDetail = () => {
   const [showDetail, setShowDetail] = useState(true);
   const [showEditDetail, setShowEditDetail] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [image, setImage] = useState("");
   const { contacts, setContacts } = useContacts();
   const { id } = useParams();
   const idNum = Number(id);
+  const router = useRouter();
 
-  if (!contacts.find((contact) => contact.id === idNum)) {
-    return (
-      <div>
-        <h2>No contact matches ID: {id}</h2>
-        <Link href="/contacts">
-          <button>Back to Contacts</button>
-        </Link>
-      </div>
-    );
-  }
-
-  const contact = contacts.filter((contact) => contact.id === idNum)[0];
-
-  const [name, setName] = useState(contact?.name || "");
-  const [email, setEmail] = useState(contact?.email || "");
-  const [phone, setPhone] = useState(contact?.phone || "");
-  const [image, setImage] = useState(contact?.image || "");
+  const contact = contacts.find((contact) => contact.id === idNum);
 
   const updateContact = (e) => {
     e.preventDefault();
@@ -44,15 +33,44 @@ const ContactDetail = () => {
     setShowEditDetail(false);
   };
 
+  const deleteContact = () => {
+    const updatedContacts = contacts.filter(
+      (checkContact) => checkContact !== contact
+    );
+    setContacts(updatedContacts); // Update the context/state
+
+    router.push("/contacts");
+  };
+
+  useEffect(() => {
+    if (contact) {
+      setName(contact.name);
+      setEmail(contact.email);
+      setPhone(contact.phone);
+      setImage(contact.image);
+    }
+  }, [contact]);
+
+  if (!contacts.find((contact) => contact.id === idNum)) {
+    return (
+      <div>
+        <h2>No contact matches ID: {id}</h2>
+        <Link href="/contacts">
+          <button>Back to Contacts</button>
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div>
-      {showDetail && !isDeleted && (
+      {showDetail && (
         <div class="contact-card-container">
           <div className="contact-card">
-            <img src={contact?.image} />
-            <h3>{contact.name}</h3>
-            <h4>{contact.email}</h4>
-            <h4>{contact.phone}</h4>
+            {image && <img src={image} />}
+            <h3>{name}</h3>
+            <h4>{email}</h4>
+            <h4>{phone}</h4>
             <button
               onClick={() => {
                 setShowDetail(false);
@@ -61,6 +79,7 @@ const ContactDetail = () => {
             >
               Edit Contact
             </button>
+            <button onClick={deleteContact}>Delete</button>
             <Link href="/">
               <button className="back-to-list">Back to Contacts</button>
             </Link>
