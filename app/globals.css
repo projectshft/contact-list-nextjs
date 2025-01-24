@@ -52,7 +52,7 @@
 
 .contact-detail {
   display: grid;
-  grid-template-columns: 0.3fr 1fr 1fr 1fr 0.5fr 0.5fr;
+  grid-template-columns: 0.3fr 1fr 1fr 1fr 0.5fr;
   gap: 20px;
   align-items: center;
   padding: 15px 25px;
@@ -83,7 +83,7 @@
 
 .contact-title {
   display: grid;
-  grid-template-columns: 0.3fr 1fr 1fr 1fr 0.5fr 0.5fr;
+  grid-template-columns: 0.3fr 1fr 1fr 1fr 0.5fr;
   gap: 20px;
   align-items: center;
   padding: 15px 25px;
@@ -185,14 +185,6 @@
   background-color: #0056b3;
 }
 
-.contact-detail .delete {
-  background-color: #ff0000;
-}
-
-.contact-detail .delete:hover {
-  background-color: #c00000;
-}
-
 @media (max-width: 768px) {
   .add-contact form {
     padding: 15px;
@@ -246,4 +238,12 @@
   font-size: 1.2em;
   margin: 4px 0;
   color: #666;
+}
+
+.delete {
+  background-color: #ff0000;
+}
+
+.delete:hover {
+  background-color: #c00000;
 }

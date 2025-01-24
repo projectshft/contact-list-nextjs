@@ -29,9 +29,6 @@ const Contact = ({ contact }) => {
       <button className="contact-column" onClick={handleViewClick}>
         View
       </button>
-      <button className="contact-column delete" onClick={deleteContact}>
-        Delete
-      </button>
     </div>
   );
 };

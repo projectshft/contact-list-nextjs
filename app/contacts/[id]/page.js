@@ -79,7 +79,9 @@ const ContactDetail = () => {
             >
               Edit Contact
             </button>
-            <button onClick={deleteContact}>Delete</button>
+            <button className="delete" onClick={deleteContact}>
+              Delete
+            </button>
             <Link href="/">
               <button className="back-to-list">Back to Contacts</button>
             </Link>
