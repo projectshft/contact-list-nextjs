@@ -8,10 +8,28 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "eslintConfig": {
+    "extends": [
+      "wesbos"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "endOfLine": "auto",
+          "tabWidth": 2
+        }
+      ]
+    }
+  },
   "dependencies": {
+    "bootstrap": "^5.3.3",
+    "eslint-config-wesbos": "^4.3.2",
+    "next": "14.0.2",
+    "proptypes": "^1.1.0",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.0.2"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "eslint": "^8",
