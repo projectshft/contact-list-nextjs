@@ -1,4 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+    images: {
+    domains: ['art.ngfiles.com', 'm.media-amazon.com'], 
+
+  },
+}
 
 module.exports = nextConfig

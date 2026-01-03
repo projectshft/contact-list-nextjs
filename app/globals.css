@@ -105,3 +105,38 @@ a {
     color-scheme: dark;
   }
 }
+
+.header {
+  display: block;
+  margin-top: 50px;
+  text-align: center
+}
+
+.roundImage {
+  border-radius: 50%;
+}
+
+.editBtn, .deleteBtn {
+  border: none;      
+  outline: none;       
+  background: none;    
+  cursor: pointer; 
+}
+
+.editBtn {
+  color: blue;
+}
+
+.deleteBtn {
+  color: red;
+}
+
+.no-arrows::-webkit-inner-spin-button,
+.no-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.back-link {
+  margin-right: 20px;
+}
