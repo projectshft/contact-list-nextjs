@@ -1,95 +1,74 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Link from 'next/link';
+import Row from 'react-bootstrap/Row';
+import { useState } from 'react';
+import { SearchBar } from './components/searchBar';
+import { ContactAPI } from './data/contactsAPI';
+import Contact from './contacts/page';
 
 export default function Home() {
+  const [searchResult, setSearchResult] = useState('');
+
+  const contactSearch = (term) => {
+    const result = ContactAPI.all().filter((contact) =>
+      contact.name.toLowerCase().includes(term.toLowerCase()),
+    );
+
+    setSearchResult(result.length > 0 ? result[0] : '');
+
+    // Temp, but causes rerender if search term is cleared, without it, results would stay even if term was empty, forces vdom to render ''.
+    if (term === '') {
+      setSearchResult('');
+    }
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <>
+      <Container>
+        <Col className="page-header">
+          <h1 className="no-margin-h1">All Contacts</h1>
+          <Link href="/contacts/new">
+            <Button className="add-contact">ADD CONTACT</Button>
+          </Link>
+        </Col>
+      </Container>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <Container>
+        <SearchBar onSearchTermChange={contactSearch} />
+      </Container>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+      <Container>
+        <Row>
+          <Col className="sm">Profile Pic</Col>
+          <Col className="sm">Name</Col>
+          <Col className="sm">Email</Col>
+          <Col className="sm">Phone</Col>
+          <Col className="sm" />
+        </Row>
+        {searchResult && (
+          <Row className="contacts-list" key={searchResult.uniqueId}>
+            <Col className="sm">
+              <img src={searchResult.image} alt={searchResult.name} />
+            </Col>
+            <Col className="sm">
+              <Link href={`/contacts/${searchResult.uniqueId}`}>
+                <Col className="sm">{searchResult.name}</Col>
+              </Link>
+            </Col>
+            <Col className="sm">{searchResult.email}</Col>
+            <Col className="sm">{searchResult.phoneNumber}</Col>
+            <Col className="sm">Edit</Col> {/* Implement editing function */}
+          </Row>
+        )}
+      </Container>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      <Container>
+        <Contact />
+      </Container>
+    </>
+  );
 }
