@@ -1,0 +1,38 @@
+'use client'
+import PropTypes from "prop-types";
+
+export const ContactsAPI = {
+  contacts: [
+    {
+			id: 70219577,
+			name: "Albert Einstein",
+			photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Albert_Einstein_Head_cleaned.jpg/500px-Albert_Einstein_Head_cleaned.jpg",
+			email: "aeinstein@example.com",
+			phone: "+15555555555"
+		}
+  ],
+	all: function () {
+		return this.contacts;
+	},
+	addContact: function ({ id, photo, name, email, phone }) {
+		this.contacts.push({ id, photo, name, email, phone });
+	},
+	get: function (id) {
+		const isContact = (c) => c.id === id;
+		return this.contacts.find(isContact);
+	}
+};
+
+ContactsAPI.PropTypes = {
+	contacts: PropTypes.arrayOf(PropTypes.object).isRequired
+}
+
+ContactsAPI.contacts.forEach((c) => {
+	return c.PropTypes = {
+		id: PropTypes.number.isRequired,
+		name: PropTypes.string,
+		photo: PropTypes.string,
+		email: PropTypes.string,
+		phone: PropTypes.string
+	}
+})

@@ -1,95 +1,73 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import { useState } from "react";
+import { ContactsAPI } from "@/app/contacts/data/contactsAPI";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import SearchResults from "./components/searchResults";
+import ContactList from "./components/contactList";
 
 export default function Home() {
+  const [allContacts, _] = useState(ContactsAPI.all());
+  const router = useRouter();
+  const [term, setTerm] = useState('');
+
+  allContacts.sort((a, b) => {
+    const nameA = a.name.toUpperCase();
+    const nameB = b.name.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
+    <div className="container text-center">
+      <div className="row pt-5">
+        <div className="col">
+          <h1>My Contacts</h1>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
           <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            className="btn btn-primary"
+            role="button"
+            onClick={() => router.push("/contacts/new")}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
+            ADD CONTACT
           </a>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="row p-5">
+        <div className="col dropdown">
+          <input className="form-control" placeholder="Search Contact Names, Emails, & Phone Numbers (format: +12223334444)" type="search" onChange={(e) => setTerm(e.target.value)} value={term}/>
+        </div>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className="row p-5">
+        <div className="col table-responsive">
+          <table className="table table-striped table-hover align-middle">
+            <thead>
+              <tr>
+                <th scope="col" className="col-1">
+                  Photo
+                </th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col" className="col-1">
+                  Tools
+                </th>
+              </tr>
+            </thead>
+            <tbody id="contact-list">
+              {term === null ? <ContactList/> : <SearchResults term={term}/>}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </main>
-  )
+    </div>
+  );
 }
